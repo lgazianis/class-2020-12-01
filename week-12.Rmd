@@ -23,7 +23,7 @@ week_12 <- shaming %>%
 
 **Prompt:** Create a fitted model object called `fit_1` using this formula or, if you want, a formula which you prefer. You are trying to model `age` as a function of various parameters.
 
-age ~ sex + solo + primary_04 + primary_06 + treatment + sex:solo
+age ~ sex + solo + primary_02 + primary_04 + treatment + sex:solo
                     
 * Is this a causal or predictive model? Why?
 
