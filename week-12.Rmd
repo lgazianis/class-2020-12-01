@@ -25,11 +25,30 @@ week_12 <- shaming %>%
 
 age ~ sex + solo + primary_02 + primary_04 + treatment + sex:solo
                     
+```{r}
+
+fit_1 <- stan_glm(data = week_12,
+                  age ~ sex + solo + primary_02 + primary_04 + treatment + sex:solo,
+                  refresh = 0)
+  
+fit_1
+
+posterior_interval(prob = .95, fit_1)
+
+```
+  
+                  
 * Is this a causal or predictive model? Why?
+
+
 
 * Interpret the fitted model. 
 
+
+
 * Should we keep all these variables? And the interaction term?
+
+
 
 * Are you surprised about the meaningfulness, or lack thereof, for the treatment variables?
 
@@ -40,6 +59,15 @@ age ~ sex + solo + primary_02 + primary_04 + treatment + sex:solo
 
 **Prompt:** Provide a posterior probability distribution for the expected difference in ages between those who live alone and those who do not. (Hint: Given that we are asking for an expected value, use `posterior_epred()`.)
 
+```{r}
+
+new_tibble <- tibble(solo = c(TRUE, FALSE, TRUE, FALSE),
+                     sex = c("Female", "Male", "Male", "Female"),
+                     primary_02)
+
+posterior_epred(newdata = new_tibble, fit_1)
+
+```
 
 
 
